@@ -1,5 +1,15 @@
+# Python bytecode
 __pycache__/
-*.pyc
-venv/
-db.sqlite3
+*.py[cod]
+
+# Django / celery / misc
 celerybeat-schedule
+*.sqlite3
+*.log
+*.pot
+*.pyc
+
+# IDE / OS
+.vscode/
+*.swp
+.DS_Store
