@@ -13,3 +13,4 @@ celerybeat-schedule
 .vscode/
 *.swp
 .DS_Store
+venv/
