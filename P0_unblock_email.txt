@@ -1,0 +1,44 @@
+Subject: P0 QA Unblocked – Ready for full Postman run
+
+Hi Team,
+
+Thanks for the updates. We are in the final stretch.
+
+Unblock QA + Freeze Canonical P0
+
+Renuka
+
+--- ACTIONS I need from you to finalize and notify ---
+1) Verify the exact commit is present on `main` and pushed to the canonical repo:
+
+# From backend repo root
+```powershell
+# fetch latest refs
+git fetch origin --prune
+# check local and origin main for the commit hash
+git log --oneline origin/main | findstr 62d31cc || echo "62d31cc not found on origin/main"
+# same for local main
+git log --oneline main | findstr 62d31cc || echo "62d31cc not found on local main"
+```
+
+If the commit is not present, push the branch containing the commit and then merge or rebase to `main`. Then tag the release:
+
+```powershell
+# from branch that contains the desired commit
+git checkout main
+git merge your-branch-name
+# create an annotated tag
+git tag -a p0-unblocked-<YYYYMMDD> -m "P0 QA Unblocked — Ready for full Postman run"
+# push main and tags
+git push origin main
+git push origin --tags
+```
+
+2) Reproduce Pranjali’s issue locally (login OK, protected endpoints 403). If reproduced, attach Postman logs and screenshots.
+
+3) Once fixed, send group message: "P0 QA Unblocked – Ready for full Postman run"
+
+Please reply with the GitHub branch link once pushed so I can re-run the Postman E2E and update the tracker.
+
+Thanks,
+Ishan Bhokarikar
