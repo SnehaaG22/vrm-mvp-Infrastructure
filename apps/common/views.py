@@ -80,3 +80,7 @@ class UserProfileView(APIView):
             "org_id": getattr(user, 'org_id', None) or None,
             "is_staff": user.is_staff,
         })
+
+
+# Import ViewSets from models
+from .models import AssessmentViewSet, VendorViewSet

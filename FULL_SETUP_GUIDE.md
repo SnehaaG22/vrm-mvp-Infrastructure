@@ -35,6 +35,7 @@ python -m venv .venv
 ```
 
 **If you get an execution policy error:**
+
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # Then retry activation
@@ -66,6 +67,7 @@ python seed_qa_users.py
 ```
 
 **Output should show:**
+
 ```
 ✓ Created: admin (admin@vrm.com) - staff:True, superuser:True
 ✓ Created: vendor (vendor@vrm.com) - staff:False, superuser:False
@@ -80,6 +82,7 @@ python manage.py runserver 127.0.0.1:8000
 ```
 
 **Output should show:**
+
 ```
 Starting development server at http://127.0.0.1:8000/
 ```
@@ -119,11 +122,12 @@ npm start
 ```
 
 **Output should show:**
+
 ```
 Compiled successfully!
 
 You can now view vrm-frontend in the browser.
-  
+
   Local:            http://localhost:3000
 ```
 
@@ -158,10 +162,12 @@ Once logged in, you should see:
 ### 4. Try Other Users
 
 **Vendor User:**
+
 - Email: `vendor@vrm.com`
 - Password: `password123`
 
 **Reviewer User:**
+
 - Email: `reviewer@vrm.com`
 - Password: `password123`
 
@@ -220,6 +226,7 @@ npm install --force
 **Base URL:** `http://127.0.0.1:8000/api`
 
 **Required Headers for ALL requests:**
+
 ```
 Authorization: Bearer <token>
 org-id: 101
@@ -227,6 +234,7 @@ Content-Type: application/json
 ```
 
 **Available Endpoints:**
+
 - `POST /auth/login/` - Login with email & password
 - `GET /users/me/` - Get current user profile
 - `GET /notifications/` - List notifications
@@ -253,22 +261,26 @@ Content-Type: application/json
 ## 📞 Quick Commands Reference
 
 **Activate Backend Env (anytime):**
+
 ```powershell
 cd vrm-backend
 .\.venv\Scripts\Activate.ps1
 ```
 
 **Start Backend (after activation):**
+
 ```powershell
 python manage.py runserver 127.0.0.1:8000
 ```
 
 **Start Frontend (from vrm-frontend):**
+
 ```powershell
 npm start
 ```
 
 **Deactivate Env:**
+
 ```powershell
 deactivate
 ```
