@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, get_user_model
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import AllowAny
 
 User = get_user_model()
 
@@ -13,6 +14,7 @@ class LoginView(APIView):
     This is a minimal dev implementation to unblock the frontend. Replace
     with a secure token (JWT or DRF TokenAuth) in production.
     """
+    permission_classes = [AllowAny]
 
     def post(self, request):
         email = request.data.get("email")
