@@ -1,0 +1,47 @@
+✅ P0 QA UNBLOCKED – READY FOR POSTMAN RUN
+
+Hi Ishan,
+
+All auth and protected endpoints verified working (200 OK, no 403 errors).
+
+BRANCH LINK:
+https://github.com/SnehaaG22/vrm-mvp-Infrastructure/tree/infra-changes
+
+COMMIT: 2e672b6
+TAG: p0-unblocked-20260219
+
+QA USERS (READY):
+  admin@example.com / testpass123 (Admin role)
+  vendor@example.com / testpass123 (Vendor role)
+  reviewer@example.com / testpass123 (Reviewer role)
+
+QUICK START:
+  cd vrm-backend
+  python seed_qa_users.py
+  python manage.py runserver 127.0.0.1:8000
+
+ENDPOINTS VERIFIED:
+  ✅ POST /api/auth/login/ → 200 OK (returns token)
+  ✅ GET /api/users/me/ → 200 OK (returns user)
+  ✅ GET /api/notifications/ → 200 OK (no 403)
+
+FRONTEND ENV:
+  REACT_APP_API_URL=http://127.0.0.1:8000/api
+  npm start
+
+NEXT STEP:
+  Pranjali → Run Postman E2E suite with seeded users
+  Anuja → Run P0 conformance gate
+  Renuka → Coordinate QA validation
+
+Files ready in backend repo:
+  - P0_UNBLOCK_SUMMARY_FOR_ISHAN.md (full details)
+  - P0_UNBLOCK_TEAM_EMAIL.txt (email template for team)
+  - seed_qa_users.py (QA user setup script)
+
+---
+
+Ready for full QA run.
+
+Renuka
+(Backend Team)
