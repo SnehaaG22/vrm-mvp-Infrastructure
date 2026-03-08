@@ -18,22 +18,22 @@ User.objects.all().delete()
 test_users = [
     {
         'username': 'admin',
-        'email': 'admin@example.com',
-        'password': 'testpass123',
+        'email': 'admin@vrm.com',
+        'password': 'password123',
         'is_staff': True,
         'is_superuser': True
     },
     {
         'username': 'vendor',
-        'email': 'vendor@example.com',
-        'password': 'testpass123',
+        'email': 'vendor@vrm.com',
+        'password': 'password123',
         'is_staff': False,
         'is_superuser': False
     },
     {
         'username': 'reviewer',
-        'email': 'reviewer@example.com',
-        'password': 'testpass123',
+        'email': 'reviewer@vrm.com',
+        'password': 'password123',
         'is_staff': False,
         'is_superuser': False
     }
