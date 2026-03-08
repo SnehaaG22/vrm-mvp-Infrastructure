@@ -82,9 +82,23 @@ exit()
 
 Django Admin: http://127.0.0.1:8000/admin/
 
+Note:
+
+- http://127.0.0.1:8000 now returns a JSON status response (not 404).
+- Django admin login expects username (not email).
+
 Create superuser if needed:
 
 python manage.py createsuperuser
+
+Or seed QA users:
+
+python manage.py shell < seed_qa_users.py
+
+Default QA admin credentials:
+
+Username: admin
+Password: password123
 
 5.MinIO Dashboard
 
@@ -94,7 +108,14 @@ Username: minioadmin
 
 Password: minioadmin
 
-6.Testing Background Jobs & Notifications
+6.PgAdmin Dashboard
+
+http://localhost:5050/login
+
+Email: admin@admin.com
+Password: admin
+
+7.Testing Background Jobs & Notifications
 
 **Manual Trigger**
 
@@ -132,17 +153,17 @@ Mark all notifications as read:
 
 iwr "http://localhost:8000/api/notifications/read-all/" -Method Post -Headers @{ "org-id" = "1" } -UseBasicParsing
 
-7.Run Minimal Tests
+8.Run Minimal Tests
 
 docker compose exec backend python manage.py test
 
-8. Run Automated Tests
+9. Run Automated Tests
 
 docker compose exec backend python manage.py test apps.notifications
 
 docker compose exec backend python manage.py test apps.evidence
 
-9.Celery Logs
+10.Celery Logs
 
 Worker:
 
@@ -152,7 +173,7 @@ Beat:
 
 docker-compose logs -f beat
 
-10.Trigger Reminder Jobs (Optional Manual Test):
+11.Trigger Reminder Jobs (Optional Manual Test):
 
 Run Celery tasks manually to verify notifications:
 
