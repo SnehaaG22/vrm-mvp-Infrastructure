@@ -107,9 +107,31 @@ services:
     networks:
       - vrm_network
 
+  prometheus:
+    image: prom/prometheus
+    container_name: vrm_prometheus
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/alert_rules.yml:/etc/prometheus/alert_rules.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - vrm_network
+
+  grafana:
+    image: grafana/grafana
+    container_name: vrm_grafana
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - vrm_network
+
 volumes:
   minio_data:
   vrm_postgres_data:
+  grafana_data:
 
 networks:
   vrm_network:

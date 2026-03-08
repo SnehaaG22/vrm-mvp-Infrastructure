@@ -16,4 +16,5 @@ urlpatterns = [
     path("api/", include(router.urls)),
     path("api/notifications/", include("apps.notifications.urls")),
     path("api/evidence/", include("apps.evidence.urls")),
+    path('', include('django_prometheus.urls')),
 ]

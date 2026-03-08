@@ -8,5 +8,6 @@ redis
 psycopg2-binary
 minio
 python-dotenv
+django-prometheus
 
 
