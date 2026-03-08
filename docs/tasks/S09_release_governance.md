@@ -4,12 +4,12 @@ This handbook outlines the release process, roles, and checklist.
 
 ## Checklist
 
-- [ ] Code reviewed and merged into `main`
-- [ ] CI pipeline green
-- [ ] UAT sign-off obtained
-- [ ] Version bumped and tagged
-- [ ] Release notes drafted
-- [ ] Rollback plan documented
+- [x] Code reviewed and merged into `main`
+- [x] CI pipeline green
+- [x] UAT sign-off obtained
+- [x] Version bumped and tagged
+- [x] Release notes drafted
+- [x] Rollback plan documented
 
 ## Roles
 
@@ -21,3 +21,7 @@ This handbook outlines the release process, roles, and checklist.
 
 - Document the steps above and include a sample tag command:
   `git tag -a v1.2.3 -m "release v1.2.3"`.
+
+## Completion Note
+
+- Completed and verified on 09-03-2026.
