@@ -1,0 +1,29 @@
+groups:
+  - name: reliability-rules
+    rules:
+      - alert: BackendAdminDown
+        expr: probe_success{job="blackbox", instance="http://backend:8000/admin/"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Backend admin page is down"
+          description: "The backend admin endpoint is not responding."
+
+      - alert: MinioConsoleDown
+        expr: probe_success{job="blackbox", instance="http://minio:9001/"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "MinIO console is down"
+          description: "The MinIO web console is not responding."
+
+      - alert: PgAdminDown
+        expr: probe_success{job="blackbox", instance="http://pgadmin:80/"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "pgAdmin is down"
+          description: "The pgAdmin web interface is not responding."

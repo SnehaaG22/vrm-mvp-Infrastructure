@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from celery.schedules import crontab
 
@@ -58,8 +59,12 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": os.environ.get("DB_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": BASE_DIR / "db.sqlite3" if os.environ.get("DB_ENGINE", "django.db.backends.sqlite3") == "django.db.backends.sqlite3" else os.environ.get("POSTGRES_DB", "vrm_db"),
+        "USER": os.environ.get("POSTGRES_USER", "vrm"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "vrm"),
+        "HOST": os.environ.get("POSTGRES_HOST", "postgres"),
+        "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
 }
 

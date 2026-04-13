@@ -18,7 +18,7 @@ Redis (message broker)
 
 MinIO (object storage for evidence)
 
-SQLite (local DB)
+PostgreSQL in Docker (SQLite fallback for local non-Docker runs)
 
 **Evidence Automation:**
 
@@ -56,15 +56,11 @@ Example: 1/10/101/5/document.pdf
 
 1.Start Docker Services
 
-docker-compose up -d --build
+docker compose up -d --build
 
 2.Run Migrations
 
-docker exec -it vrm-backend-backend-1 bash
-
-python manage.py makemigrations
-
-python manage.py migrate
+docker compose exec backend python manage.py migrate
 
 3.Seed Sample Evidence
 
@@ -98,23 +94,15 @@ Password: minioadmin
 
 **Manual Trigger**
 
-docker compose exec backend python manage.py shell
+docker compose exec backend python manage.py shell -c "from apps.evidence.tasks import evidence_expiry_reminder; from apps.renewals.tasks import renewal_due_reminder; print('READY')"
 
-from apps.evidence.tasks import evidence_expiry_reminder
+**_Run immediately (synchronous)_**
 
-from apps.renewals.tasks import renewal_due_reminder
+docker compose exec backend python manage.py shell -c "from apps.evidence.tasks import evidence_expiry_reminder; from apps.renewals.tasks import renewal_due_reminder; evidence_expiry_reminder.apply(); renewal_due_reminder.apply()"
 
-**_#Run immediately (synchronous)_**
+**_Run async (Celery)_**
 
-evidence_expiry_reminder()
-
-renewal_due_reminder()
-
-**_#Run async (Celery)_**
-
-evidence_expiry_reminder.delay()
-
-renewal_due_reminder.delay()
+docker compose exec backend python manage.py shell -c "from apps.evidence.tasks import evidence_expiry_reminder; from apps.renewals.tasks import renewal_due_reminder; evidence_expiry_reminder.delay(); renewal_due_reminder.delay()"
 
 **Verify Notifications via API**
 
@@ -146,11 +134,11 @@ docker compose exec backend python manage.py test apps.evidence
 
 Worker:
 
-docker-compose logs -f worker
+docker compose logs -f worker
 
 Beat:
 
-docker-compose logs -f beat
+docker compose logs -f beat
 
 10.Trigger Reminder Jobs (Optional Manual Test):
 
@@ -158,15 +146,15 @@ Run Celery tasks manually to verify notifications:
 
 docker compose exec backend python manage.py shell
 
-from apps.evidence.tasks import evidence_expiry_reminders
+from apps.evidence.tasks import evidence_expiry_reminder
 
-from apps.renewals.tasks import renewal_due_reminders
+from apps.renewals.tasks import renewal_due_reminder
 
 #Trigger tasks
 
-evidence_expiry_reminders()
+evidence_expiry_reminder.apply()
 
-renewal_due_reminders()
+renewal_due_reminder.apply()
 
 #List notifications
 
@@ -190,7 +178,7 @@ minio
 
 **All services start via:**
 
-docker-compose up -d
+docker compose up -d
 
 7 days before expiry
 
