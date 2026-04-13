@@ -161,15 +161,3 @@ docker compose exec postgres pg_dump -U vrm -d vrm_db > postgres_backup.sql
 docker compose exec postgres psql -U vrm -d vrm_db < postgres_backup.sql
 ```
 
-## 12. Final checklist
-
-- [ ] `docker compose up -d --build` runs successfully
-- [ ] `docker compose ps --all` shows all services Up
-- [ ] `http://127.0.0.1:8000/admin/` opens
-- [ ] `http://localhost:9001/` opens
-- [ ] `http://localhost:5050/` opens
-- [ ] `http://127.0.0.1:9090/` opens
-- [ ] `http://127.0.0.1:3000/` opens
-- [ ] default Grafana login is `admin/admin`
-- [ ] tasks `evidence_expiry_reminder` and `renewal_due_reminder` can be triggered
-- [ ] tests run without errors
